@@ -1,0 +1,16 @@
+.linea-doble {
+    width: 100%; /* Ajusta esto según la necesidad de tu diseño */
+    text-align: center;
+    margin: 20px 0; /* Espacio arriba y abajo de la línea doble */
+}
+.linea-doble::before,
+.linea-doble::after {
+    content: '';
+    display: block;
+    height: 1px; /* Altura de la línea superior */
+    background-color: black;
+}
+.linea-doble::after {
+    height: 3px; /* Altura de la línea inferior */
+    margin-top: 4px; /* Espacio entre las dos líneas */
+}

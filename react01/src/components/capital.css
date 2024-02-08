@@ -1,0 +1,8 @@
+.capitalCiutat {
+    font-size: 30px;
+    color: aqua;
+}
+ .capitalCiutat::first-letter {
+    font-size: 200px !important;
+    text-transform: uppercase;
+} 

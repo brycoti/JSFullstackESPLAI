@@ -9,7 +9,7 @@ function App() {
   });
   const [tarea, setTarea] = useState('');
   const [color, setColor] = useState('TRABAJO');
-
+  
   const colorClases = {
     TRABAJO: 'text-blue-500',
     PERSONAL: 'text-green-500',
@@ -46,7 +46,7 @@ function App() {
 
   const listaTareas = tareas.map((tarea, indice) => (
     <div key={indice} className={`flex justify-between items-center ${colorClases[tarea.color]} mb-2 py-2 px-4 rounded`}>
-      <button className='bg-orange-200 hover:bg-orange-400  py-2 px-4 rounded' onClick={() => eliminaTarea(indice)}>
+      <button className='bg-orange-200 hover:bg-orange-400 items-center  py-2 px-3 rounded' onClick={() => eliminaTarea(indice)}>
         <span>{tarea.texto}</span>
       </button>
     </div>
@@ -58,6 +58,7 @@ function App() {
         <form onSubmit={handleSubmit} className="m-4">
           <div>
             <h2 className="mb-3 text-2xl text-red-800">Introduce la nueva tarea</h2><br />
+
             <input value={tarea} onChange={nuevaTarea} name="nom" type="text" id="nom" placeholder='Nom'
             className="input bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" />
           </div>
@@ -72,6 +73,7 @@ function App() {
           </div>
 
           <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit">Enviar</button>
+       
         </form>
 
         <div className="w-full px-4  flex flex-col items-center border-l-2 border-red-400">
@@ -79,8 +81,6 @@ function App() {
             <div className='grid  grid grid-cols-2 grid-rows-auto '>
               {listaTareas}
             </div>
-            
-           
         </div>
       </div>
     </>

@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [tareas, setTareas] = useState([]);
+  const [tareas, setTareas] = useState(() => {
+    // Recuperar tareas guardadas al cargar el componente
+    const tareasGuardadas = localStorage.getItem('tareas');
+    return tareasGuardadas ? JSON.parse(tareasGuardadas) : [];
+  });
   const [tarea, setTarea] = useState('');
-  const [color, setColor] = useState('TRABAJO'); // Valor inicial pq no puede estar vacío
+  const [color, setColor] = useState('TRABAJO');
 
   const colorClases = {
     TRABAJO: 'text-blue-500',
@@ -13,18 +17,21 @@ function App() {
     FAMILIA: 'text-orange-500',
   };
 
+  useEffect(() => {
+    // Guardar tareas en localStorage cuando el estado de tareas cambie
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+  }, [tareas]);
+
   const handleSubmit = (event) => {
-
     event.preventDefault();
-
     if (tarea !== '') {
       const nuevaTarea = { texto: tarea, color: color };
-      setTareas([...tareas, nuevaTarea]); // agregar el objeto nuevaTarea 
-      setTarea(''); // Limpiar el campo de entrada después de agregar la tarea
+      setTareas([...tareas, nuevaTarea]);
+      setTarea('');
     }
   };
 
-  const cambiaColor = (event) => { 
+  const cambiaColor = (event) => {
     setColor(event.target.value);
   };
 
@@ -32,15 +39,13 @@ function App() {
     setTarea(event.target.value);
   };
 
-  const eliminaTarea = (id) => { 
-    const nuevasTareas = tareas.filter((_, index) => index !== id); 
+  const eliminaTarea = (id) => {
+    const nuevasTareas = tareas.filter((_, index) => index !== id);
     setTareas(nuevasTareas);
   };
 
-  //Renderiza el color con una clase Tailwind con el color del formulario
   const listaTareas = tareas.map((tarea, indice) => (
     <div key={indice} className={`flex justify-between items-center ${colorClases[tarea.color]} mb-2 py-2 px-4 rounded`}>
-      
       <button className='bg-orange-200 hover:bg-orange-400  py-2 px-4 rounded' onClick={() => eliminaTarea(indice)}>
         <span>{tarea.texto}</span>
       </button>

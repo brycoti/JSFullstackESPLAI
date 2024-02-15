@@ -10,11 +10,11 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-center my-8">Consulta de Bicis Disponibles</h1>
       <MiniForm onDisponiblesChange={handleDisponiblesChange} />
       <Bicis disponibles={disponibles} />
-    </div>
+    </>
   );
 }
 

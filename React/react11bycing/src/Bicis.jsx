@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'; // I
 
 export default function Bicis({ disponibles }) {
   const [bicis, setBicis] = useState([]);
@@ -22,6 +24,15 @@ export default function Bicis({ disponibles }) {
   }
 
   const estacionesFiltradas = bicis.filter(bici => bici.free_bikes >= disponibles);
+
+  const centralPosition = bicis.reduce(
+    (acc, bici) => {
+      acc[0] += bici.latitude / bicis.length;
+      acc[1] += bici.longitude / bicis.length;
+      return acc;
+    },
+    [0, 0]
+  );
 
   return (
     <div className="flex flex-col items-center justify-center my-8">
@@ -54,6 +65,22 @@ export default function Bicis({ disponibles }) {
       ) : (
         <p className="mt-4">No hay estaciones con {disponibles} o más bicis disponibles.</p>
       )}
+
+<MapContainer center={centralPosition} zoom={13} scrollWheelZoom={false} style={{ height: '400px', width: '100%' }}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      {bicis.map((bici, index) => (
+        <Marker key={index} position={[bici.latitude, bici.longitude]}>
+          <Popup>
+            {bici.name} <br />
+            Bicis disponibles: {bici.free_bikes} <br />
+            Slots vacíos: {bici.empty_slots}
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
     </div>
   );
 }

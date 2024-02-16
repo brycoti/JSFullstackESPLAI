@@ -13,7 +13,7 @@ export default function MiniForm({ onDisponiblesChange }) {
   };
 
   return (
-    <form className="max-w-md mx-auto p-4 shadow-lg rounded-lg color-white dark:bg-gray-800 flex flex-row gap-6" onSubmit={handleFormSubmit}>
+    <form className=" bg-green-400 max-w-md mx-auto p-4 shadow-lg rounded-lg color-white dark:bg-gray-800 flex flex-row gap-6" onSubmit={handleFormSubmit}>
       <div className="relative z-0 w-full mb-6 group">
         <input
           value={inputValue}

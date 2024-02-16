@@ -1,0 +1,28 @@
+creamos un objeto: 
+
+
+siempre habrá la xAxis, y Axis, series (los datos de la grafica con su propiedad) y title
+
+// render luego con Highcharts.chart('variable', y const con los datos del objeto del grafico) {
+
+}
+
+// componente reloj
+
+obtener hora actual con Date y Time new Date().toLocaleTimeString("es-ES");
+
+h = new Date()
+h.toLocaleTimeString("es-ES")
+console.log(h.split(" ")[1])
+
+useState y useEffect con el reloj setInterval   y clearInterval
+
+El useEffect hace una cosa cuando se carga despues de primer render, y luego cada vez que el [] cambia.
+ Tambien tiene un return de un useffect para quitarlo o parar la conexion con el servidor
+  para no cargar el bucle infinito
+
+setInterval recibe una funcion y un tiempo en milisegundos en parametros
+
+z = setInterval(() => console.log("hola" + i++), 1000)
+clearInterval(z) // cierra el temporizador
+

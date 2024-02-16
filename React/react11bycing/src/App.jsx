@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="container bg-green-200 mx-auto p-4">
-      <h1 className="text-center my-8">Consulta de Bicis Disponibles</h1>
+      <h1 className="text-center my-8  text-green-800 text-3xl">Consulta de Bicis Disponibles</h1>
       <MiniForm onDisponiblesChange={handleDisponiblesChange} />
       <Bicis disponibles={disponibles} />
     </div>
